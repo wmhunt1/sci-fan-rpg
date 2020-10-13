@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding RPG</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body onload = "startGame()">
+    <header id="Title">
+        <h1>Coding RPG</h1>
+    </header>
+    <nav id="Menu">
+        <h1>Menu</h1>
+        <ul>
+            <li><button id="charBtn">Character</button> </li>
+            <li><button id=equipBtn>Equipment</button></li>
+            <li><button id="factionBtn">Factions and Reputation</button></li>
+            <li><button id="invBtn">Inventory</button></li>
+            <li><button id="journalBtn">Journal</button></li>
+        </ul>
+    </nav>
+    <section id="Modals">
+        <div id="charModal" class="modal">
+            <div class="modal-content">
+                <span id="charSpan" class="close">&times;</span>
+                <h1>Character Sheet</h1>
+                <h2>Bio</h3>
+                    <h4 id="heroName">Name:</h4>
+                    <h4 id="heroProf">Profession:</h4>
+                    <h4 id="heroLevel">Level:</h4>
+                    <h4 id="heroXp">XP:</h4>
+                    <h2>Stats</h3>
+                        <h4 id="heroCurrentHp">CHP</h4>
+                        <h4 id="heroMaxHp">MHP</h4>
+                        <h4 id="heroCurrentSp">CSP</h4>
+                        <h4 id="heroMaxSp">MSP</h4>
+                        <h4 id="heroAttack">A</h4>
+                        <h4 id="heroDefense">D</h4>
+                        <h4 id="heroSpeed">S</h4>
+            </div>
+        </div>
+        <div id="equipModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Equipment</h1>
+                <h3>Weapon</h3>
+                <h4 id="heroWepName"></h4>
+                <h4 id="heroWepType"></h4>
+                <h4 id="heroWepDamage"></h4>
+                <h4 id="heroWepDamageType"></h4>
+                <h4 id="heroWepDamageBonus"></h4>
+                <h3>Armor</h3>
+                <h4 id="heroArmorName"></h4>
+                <h4 id="heroArmorType"></h4>
+                <h4 id="heroArmorProtection"></h4>
+                <h4 id="heroArmorProtectionBonus"></h4>
+                <h3>Accessory</h3>
+                <h4 id="heroAccessName"></h4>
+                <h4 id="heroAccessType"></h4>
+                <h4 id="heroAccessEffect"></h4>
+            </div>
+        </div>
+        <div id="factionModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Factions and Reputation</h1>
+                <h3>Overall</h3>
+                <h4 id = "fame"></h4>
+                <h4 id = "infamy"></h4>
+                <h3>Places</h3>
+                <h4 id = daleVillageRep></h4>
+                <h3>People</h3>
+            </div>
+        </div>
+        <div id="invModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Inventory</h1>
+            </div>
+        </div>
+        <div id="journalModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Journal</h1>
+            </div>
+        </div>
+    </section>
+    <section id="Intro">
+        <h1>Intro</h1>
+        <article>
+            <h3>The War of The Merciless Tyrant</h3>
+            <p>text</p>
+            <h3>The Chaotic Age and the Founding of The Empire</h3>
+            <p>text</p>
+            <h3>The Civil War and Formation of The Imperial Federation</h3>
+            <p>text</p>
+            <h3>Current Day</h3>
+            <p>text</p>
+        </article>
+        <button onclick="charCreation()">Go to character creation</button>
+    </section>
+    <section id=characterCreation>
+        <h1>Character Creation</h2>
+            <article>
+                <label>Name</label>
+                <input type="text" id="name" name="name">
+                <label>Select Class</label>
+                <select name="class" id="class">
+                    <option value="freelancer">Freelancer</option>
+                    <option value="artificer">Artificer</option>
+                    <option value="barbarian">Barbarian</option>
+                    <option value="bard">Bard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="monk">Monk</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="sorcerer">Sorcerer</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="wizard">Wizard</option>
+                </select>
+                <button onclick=createHero() class="margin">Create Character</button>
+            </article>
+    </section>
+    <!-- area sections, have buttons for areas or shops etc. -->
+    <section id="valleyDale">
+        <h1>The Valley of Dale</h1>
+        <button onclick="combatTest()">Combat Test</button>
+        <button onclick="testFeature()">Test Feature</button>
+        <button id="banditCamp">Bandit Camp</button>
+        <button id="banditHideout">Bandit Hideout</button>
+        <button id="bbVillage">Broken Blade Village</button>
+        <button id=daleKeep>Dale Keep</button>
+        <button onclick="dwarvenMine.enterPlace()" id="dMine">Dwarven Mine</button>
+        <button id="dOutpost">Dwarven Outpost</button>
+        <button id="giantCave">Giant Cave</button>
+        <button id="gnollDen">Gnoll Den</button>
+        <button id="goblinVillage">Goblin Village</button>
+        <button onclick="birdWord.event4()" id="kenkuCamp">Kenku Camp</button>
+        <button id="kurekHut">Kurek's Hut</button>
+        <button id="lakeDale">Lake Dale</button>
+        <button id="logCamp">Logging Camp</button>
+        <button id="ruins">Ruins</button>
+        <button id="sheepLair">Sheepscale's Lair</button>
+        <button id="sheepPasture">Sheep Pasture</button>
+        <button onclick="spiderCave.enterPlace()" id="spiderCave">Spider Cave</button>
+        <button onclick="tollBridge.enterPlace()">Toll Bridge</button>
+        <button id="tradePost">Trading Post</button>
+        <button id="villageDaleBtn" onclick="villageDale.enterPlace()">Village of Dale</button>
+        <button id="witchCottage">Witch's Cottage</button>
+        <button id="wizardTower">Wizard Tower</button>
+        <button onclick="valleyDale.exitPlace()">World Map</button>
+    </section>
+    <section id="villageDale">
+        <h1>The Village of Dale</h1>
+        <button>Abraham's House</button>
+        <button>Dale Graveyard</button>
+        <button>Dale Manor</button>
+        <button onclick="dreamingWorker.enterStore(hero.journal.metWithContact, false)">The Dreaming Worker Inn</button>
+        <button onclick="forgeheartSmithy.enterStore(hero.journal.goblinSlayer, true)">Forgeheart Smithy</button>
+        <button onclick="littleRoot.enterPlace()">Littleroot Farm</button>
+        <button>Quincy's Workshop</button>
+        <button onclick="daleTemple.enterPlace()">Temple</button>
+        <button onclick="triggShop.enterStore()">Trig Sprocket's General Goods and Sundries</button>
+        <button onclick="villageDale.exitPlace()">Leave</button>
+    </section>
+    <section id="mineDungeon">
+        <button onclick="dwarvenMine.exitPlace()">Leave Area</button>
+        <button onclick="mineDungeon.encounter2()" id="mee">Mine Exterior Encounter</button>
+        <button onclick="mineDungeon.encounter3()" id="em">Enter Mine</button>
+        <button onclick="mineDungeon.encounter4()" id="mi1">Mine Interior 1</button>
+        <button onclick="mineDungeon.encounter5()" id="fk">Free Kobolds</button>
+        <button onclick="mineDungeon.encounter6()" id="mi2">Mine Interior 2</button>
+        <button onclick="mineDungeon.encounter7()" id="fm">Free Miners</button>
+        <button onclick="mineDungeon.encounter8()" id="mi3">Mine Interior 3</button>
+        <button onclick="mineDungeon.encounter9()" id="gBoss">Goblin Boss</button>
+    </section>
+    <section id="puzzleDungeon1">
+        <button>Entrance Hall</button>
+        <button>Boss Room</button>
+        <button>North East Passage</button>
+        <button>North East Encounter</button>
+        <button>North East Puzzle</button>
+        <button>North West Passage</button>
+        <button>North West Encounter</button>
+        <button>North West Puzzle</button>
+        <button>South West Passage</button>
+        <button>South West Encounter</button>
+        <button>South West Puzzle</button>
+        <button>South East Passage</button>
+        <button>South East Encounter</button>
+        <button>South East Puzzle</button>
+        <button>Treasure Room</button>
+    </section>
+    <script src="./modules/character.js"></script>
+    <script src="./modules/classes.js"></script>
+    <script src="./modules/combat.js"></script>
+    <script src="./modules/dungeons.js"></script>
+    <script src="./modules/items.js"></script>
+    <script src="./modules/factions.js"></script>
+    <script src="./modules/npcs.js"></script>
+    <script src="./modules/places.js"></script>
+    <script src="./modules/powers.js"></script>
+    <script src="./modules/quests.js"></script>
+    <script src="./modules/skills.js"></script>
+    <script src="./modules/stores.js"></script>
+    <script src="gamescripts.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding RPG</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="oldgamescripts.js"></script>
+
+</head>
+<body onload = "startGame()">
+    <header id = "Title">
+        <h1>Coding RPG</h1>
+    </header>
+    <nav id = "Menu">
+        <h1>Menu</h1>
+        <ul>
+            <li><button onclick ="arena()">(A)rena</button></li>
+            <li><button onclick ="character()">(C)haracter</button></a></li>
+            <li><button onclick ="downtime()">(D)owntime</button></li>
+            <li><button onclick ="equipment()">(E)quipment</button></li>
+            <li><button onclick ="factions()">(F)actions</button></li>
+            <li><button onclick ="inventory()">(I)nventory</button></li>
+            <li><button onclick ="journal()">(J)ournal</button></li>
+            <li><button onclick ="quest()">(Q)uest</button></li>
+            <li><button onclick ="rest()">(R)est</button></li>
+            <li><button onclick ="shopping()">(S)hopping</button></li>
+            <li><button onclick ="skill()">Skills and (P)owers</button></li>
+            <li><button onclick ="training()">(T)raining</button></li>
+        </ul>
+    </nav>
+    <section id ="Intro">
+        <h1>Intro</h1>
+        <article>
+            <p>Welcome to the world of placeholder.</p>
+            <p>Many years ago your quiet little village was destroyed by the evil forces of the Dark Lord, Evil Ploticus.</p>
+            <p>Your goal is to defeat the Dark Lord, avenge your village, and save the world.</p>
+            <p>However, if you want to stand a chance you must first train and improve your skills.</p>
+            <p>To do so you will need to complete quests and earn gold.</p>
+            <p>Now go and explore the world.</p> 
+            <p>But first, who are you?</p>
+            <button onclick = createHero() class = "margin">Character Creation</button>
+        </article>
+    </section>
+    <section id = "Character" class = "Stats">
+        <h1>Character Sheet</h1>    
+        <h2 id="Name">Name</h2>
+        <button onclick ="changeName()" class = "margin">Change Name</button>
+        <h2 id ="Class">Class</h2>
+        <button onclick ="changeClass()" class = "margin">Change Class</button>
+        <h2 id="Level">Level</h2>
+        <h2 id="XP">Current XP</h2>
+        <h2 id="CHP">Current HP</h2>
+        <h2 id="MHP">Max HP</h2>
+        <h2 id="CSP">Current SP</h2>
+        <h2 id="MSP">Max SP</h2>
+        <h2 id="ATK">Attack</h2>
+        <h2 id="DEF">Defense</h2>
+        <button onclick="Ready_for_level()" class = "margin">Ready for Level Up?</button>
+    </section>
+    <section id = "Arena" class ="options">
+        <h1>Arena</h1>
+        <article>
+            <h2>Bet</h2>
+            <p>Try you luck and bet on a fight.</p>
+            <button onclick="betArena()"class = "margin">Bet</button>
+        </article>
+        <article>
+            <h2>Fight</h2>
+            <p>Test you mettle and fight in the arena for glory.</p>
+            <button onclick="fightArena()" class = "margin">Fight</button>
+        </article>
+    </section>
+    <section id = "Downtime" class ="options">
+        <h1>Downtime</h1>
+        <article>
+            <h2>Drink at the Bar</h2>
+            <p>Have a few drinks, listen to gossip, and maybe get in a barfight.</p>
+            <button onclick="bar_drink()" class = "margin">Go Drinking</button>
+        </article>
+        <article>
+            <h2>Visit a Temple</h2>
+            <p>Pray to one of of the various gods.</p>
+            <button onclick="temple()" class = "margin">Go Pray</button>
+        </article>
+        <!-- Other Downtime options: Hunting, Praying (Could be a way to gain more lives), Studying. Racing. Monster fighting? Maybe in Arena -->
+    </section>
+    <section id = "Equipment" class ="options">
+        <h1>Equipment</h1>
+        <h2 id="Mwep">Melee Weapon</h2>
+        <h2 id="Rwep">Ranged Weapon</h2>
+        <h2 id="Magwep">Magic Weapon</h2>
+        <h2 id="Head">Head</h2>
+        <h2 id="Torso">Torso</h2>
+        <h2 id="Legs">Legs</h2>
+        <h2 id="Hands">Hands</h2>
+        <h2 id="Feet">Feet</h2>
+        <h2 id="Totarm">Total armor</h2>
+    </section>
+    <section id = "Factions" class ="options">
+        <h1>Factions</h1>
+    </section>
+    <section id = "Inventory" class ="options">
+        <h1>Inventory</h1>
+        <h2 id="Gold">Gold</h2>
+        <h2 id="Potion">Potion(s) owned:</h2>
+    </section>
+    <section id = "Journal" class ="options">
+        <h1>Journal</h1>
+        <h2 id="QC">Quests Completed</h2>
+        <h2 id="Boss">Bosses Defeated</h2>
+        <h2>Journal Entries</h2>
+        <p id="entries"></p>
+    </section>
+    </section>
+    <section id = "Quest" class ="options">
+        <h1>Quests</h1>
+        <h2 id="Day">Day</h2>
+        <h2 id="Fame">Fame</h2>
+        <h2 id="Infamy">Infamy</h2>
+        <article>
+            <h2>Main Quest</h2>
+            <H3>Details</H3>
+            <p>The main quest (WIP).</p>
+            <button onclick="mainQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Bandit Problem</h2>
+            <H3>Details</H3>
+            <p>A gang of bandits is extorting a village. Go to the village and drive off the bandits.</p>
+            <button onclick="banditQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Collection</h2>
+            <H3>Details</H3>
+            <p>Will pay for the collection of various items.</p>
+            <button onclick="collectionQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Dungeon Test</h2>
+            <H3>Details</H3>
+            <p>A wizard wants someone to test a dungeon they made..</p>
+            <button onclick="dungeon_testQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Goblin Slayer</h2>
+            <H3>Details</H3>
+            <p>A tribe of goblins is terrorizing a local village. Travel to their cave and wipe them out to save the village.</p>
+            <button onclick="goblinQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Hostage Rescue</h2>
+            <h3>Details</h3>
+            <p>An individual is being held for ransom. Pay the ransom or kill their captors and rescue them.</p>
+            <button onclick="rescueQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Missing Item</h2>
+            <h3>Details</h3>
+            <p>Fetch Quest</p>
+            <button onclick="fetchQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Rat Exterminator</h2>
+            <h3>Details</h3>
+            <p>The local tavern has an infestation of rats in its cellar.</p>
+            <button onclick="ratQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Spider Infestation</h2>
+            <h3>Details</h3>
+            <p>The local inn has an infestation of spiders in its cellar. Go squish them.</p>
+            <button onclick="spiderQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <article>
+            <h2>Undead Culling</h2>
+            <h3>Details</h3>
+            <p>From time to time the dead rise up in various gravesite. Cull their numbers</p>
+            <button onclick="undeadQuest()" class = "margin">Accept Quest</button>
+        </article>
+        <!-- More quest ideas: Dungeon, Treasure Hunt -->
+    </section>
+    <section id = "Rest" class ="options">
+        <h1>Rest</h1>
+        <article>
+            <h2>Rent a Bed at the Inn?</h2>
+            <p>Costs: 10 Gold</p>
+            <button onclick="inn_rest()" class = "margin">Rest</button>
+        </article>
+        <article>
+            <h2>Rest at Home?</h2>
+            <p>Costs: Free</p>
+            <button onclick="home_rest()" class = "margin">Rest</button>
+        </article>
+        <article>
+            <h2>Sleep on the Street?</h2>
+            <p>Costs: Your Pride</p>
+            <button onclick="street_rest()" class = "margin">Rest</button> 
+        </article>  
+    </section>
+    <section id = "Shopping" class ="options">
+        <h1>Shop</h1>
+        <article>
+            <h2>Apothecary</h2>
+            <p>Buy Potions for 50 Gold or Elixers of Life for 1000 Gold.</p>
+            <button onclick="apothecary()" class = "margin">Brew</button> 
+        </article>
+        <article>
+            <h2>Armorer</h2>
+            <p>Upgrade your armor.</p>
+            <button onclick="armorer()" class = "margin">Forge</button> 
+        </article> 
+        <article>
+            <h2>Bowyer</h2>
+            <p>Upgrade your ranged weapon.</p>
+            <button onclick="bowyer()" class = "margin">Fletch</button> 
+        </article> 
+        <article>
+            <h2>Enchanter</h2>
+            <p>Upgrade your spellbook's enchantments.</p>
+            <button onclick="enchanter()" class = "margin">Enchant</button> 
+        </article> 
+        <article>
+            <h2>Realtor</h2>
+            <p>Buy a house so you always have somewhere to sleep.</p>
+            <button onclick="realtor()" class = "margin">Buy House</button> 
+        </article> 
+        <article>
+            <h2>Weaponsmith</h2>
+            <p>Upgrade your weapon..</p>
+            <button onclick="weapon_smith()" class = "margin">Forge</button> 
+        </article> 
+    </section>
+    <section id = "Skills" class ="options">
+        <h1>Skills and Powers</h1>
+        <h2 id="crafting">Crafting</h2>
+        <p>Crafting Powers Known</p>
+        <p id = "crafting_known"></p>
+        <h2 id="gathering">Gathering</h2>
+        <p>Gathering Powers Known</p>
+        <p id = "gathering_known"></p>
+        <h2 id="magic">Magic</h2>
+        <p>Magic Powers Known</p>
+        <p id = "magic_known"></p>
+        <h2 id="marksman">Marksman</h2>
+        <p>Marksman Powers Known</p>
+        <p id = "marksman_known"></p>
+        <h2 id="melee">Melee</h2>
+        <p>Melee Powers Known:</p>
+        <p id = "melee_known"></p>
+        <h2 id="prayer">Prayer</h2>
+        <p>Prayer Powers Known:</p>
+        <p id = "prayer_known"></p>
+        <h2 id="speech">Speech</h2>
+        <p>Speech Powers Known</p>
+        <p id = "speech_known"></p>
+        <h2 id="survival">Survival</h2>
+        <p>Survival Powers Known</p>
+        <p id = "survival_known"></p>
+        <h2 id="thievery">Thievery</h2>
+        <p>Thievery Powers Known</p>
+        <p id = "thievery_known"></p>
+    </section>
+    <section id = "Training" class ="options">
+        <h1>Training</h1>
+        <article>
+            <h2>Crafting  Trainer</h2>
+            <p>Improve your proficiency in crafting.</p>
+            <button onclick="trainCrafting()" class = "margin">Train</button> 
+        </article> 
+        <article>
+            <h2>Gathering  Trainer</h2>
+            <p>Improve your proficiency in gathering.</p>
+            <button onclick="trainGathering()" class = "margin">Train</button> 
+        </article>
+        <article>
+            <h2>Magic  Trainer</h2>
+            <p>Improve your mastery over the arcane.</p>
+            <button onclick="trainMagic()" class = "margin">Train</button> 
+        </article>
+        <article>
+            <h2>Marksman Trainer</h2>
+            <p>Improve your proficiency with ranged weapons.</p>
+            <button onclick="trainMarksman()" class = "margin">Train</button> 
+        </article>
+        <article>
+            <h2>Melee Trainer</h2>
+            <p>Improve your proficiency with melee weapons.</p>
+            <button onclick="trainMelee()" class = "margin">Train</button> 
+        </article> 
+        <article>
+            <h2>Prayer Trainer</h2>
+            <p>Improve your connection with higher powers.</p>
+            <button onclick="trainPrayer()" class = "margin">Train</button> 
+        </article> 
+        <article>
+            <h2>Speech Trainer</h2>
+            <p>Sharpen your silver tongue.</p>
+            <button onclick="trainSpeech()" class = "margin">Train</button> 
+        </article> 
+        <article>
+            <h2>Survival Trainer</h2>
+            <p>Improve your tracking and hunting abilities.</p>
+            <button onclick="trainSurvival()" class = "margin">Train</button> 
+        </article> 
+        <article>
+            <h2>Thievery Trainer</h2>
+            <p>Improve your subterfuge based abilities.</p>
+            <button onclick="trainThievery()" class = "margin">Train</button> 
+        </article> 
+    </section>
+    <section id = "Combat" class ="options">
+        <h1>Combat</h1>
+    </section>
+    <section id = "Death" class ="options">
+        <h1>Death</h1>
+        <h2>Lifes</h2>
+        <p id="Life"></p>
+        <p>A voice tells you that it is not yet your time.</p>
+    </section>
+    <section id = "Gameover" class ="options">
+        <h1>Gameover</h1>
+        <p>reload to start a new game.</p>
+    </section>
+    <script>
+        document.getElementById("Name").innerHTML = "Name: " + hero.basics.name;
+        document.getElementById("Class").innerHTML = "Class: " + hero.basics.class;
+        document.getElementById("Level").innerHTML = "Level: " + hero.basics.level;
+        document.getElementById("XP").innerHTML = "XP: " + hero.stats.xp;
+        document.getElementById("CHP").innerHTML = "Current HP: " + hero.stats.current_hp;
+        document.getElementById("MHP").innerHTML = "Max HP: " + hero.stats.max_hp;
+        document.getElementById("Gold").innerHTML = hero.inventory.gold + " Gold";
+        document.getElementById("ATK").innerHTML = "Attack: " + hero.stats.player_atk;
+        document.getElementById("DEF").innerHTML = "Defense: " + hero.stats.player_def;
+        document.getElementById("Day").innerHTML = "Day: " + hero.journal.day;
+        document.getElementById("Fame").innerHTML = "Fame: " + hero.reputation.fame;
+        document.getElementById("Infamy").innerHTML = "Infamy: " + hero.reputation.infamy;
+        document.getElementById("QC").innerHTML = "Quests Completed " + hero.journal.quests_completed;
+        document.getElementById("CSP").innerHTML = "Current SP: " + hero.stats.current_sp;
+        document.getElementById("MSP").innerHTML = "Max SP: " + hero.stats.max_sp;
+        document.getElementById("Life").innerHTML = "Lifes: " + hero.basics.lifes;
+        document.getElementById("Mwep").innerHTML = "Melee Weapon: " + hero.equipment.melee_wep;
+        document.getElementById("Rwep").innerHTML = "Ranged Weapon: " + hero.equipment.ranged_wep;
+        document.getElementById("Magwep").innerHTML = "Magic Weapon: " + hero.equipment.magic_wep;
+        document.getElementById("Head").innerHTML = "Head: " + hero.equipment.head_slot;
+        document.getElementById("Torso").innerHTML = "Torso: " + hero.equipment.torso_slot;
+        document.getElementById("Legs").innerHTML = "Legs: " + hero.equipment.leg_slot;
+        document.getElementById("Hands").innerHTML = "Hands: " + hero.equipment.hand_slot;
+        document.getElementById("Feet").innerHTML = "Feet: " + hero.equipment.feet_slot;
+        document.getElementById("Totarm").innerHTML = "Total Armor: " + total_armor;
+        document.getElementById("crafting").innerHTML = "Craftinging: " + hero.skills.crafting;
+        document.getElementById("gathering").innerHTML = "Gathering: " + hero.skills.gathering;
+        document.getElementById("magic").innerHTML = "Magic: " + hero.skills.magic;
+        document.getElementById("marksman").innerHTML = "Marksman: " + hero.skills.marksman;
+        document.getElementById("melee").innerHTML = "Melee: " + hero.skills.melee;
+        document.getElementById("prayer").innerHTML = "Prayer: " + hero.skills.prayer;
+        document.getElementById("speech").innerHTML = "Speech: " + hero.skills.speech;
+        document.getElementById("survival").innerHTML = "Survival: " + hero.skills.survival;
+        document.getElementById("thievery").innerHTML = "Thievery: " + hero.skills.thievery;
+        document.getElementById("Boss").innerHTML = "Bosses Defeated: " + hero.journal.bosses_defeated;
+        document.getElementById("Potion").innerHTML = "Potion(s): " + hero.inventory.potion;
+
+        //open section functions
+        function character()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "block";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function arena()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "block";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function downtime()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "block";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function equipment()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "block";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function factions()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "block";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function inventory()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "block";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function journal()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "block";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function quest()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "block";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function rest()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "block";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function shopping()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "block";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function skill()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "block";
+            document.getElementById("Training").style.display = "none";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+        function training()
+        {
+            document.getElementById("Menu").style.display = "block";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Character").style.display = "none";
+            document.getElementById("Arena").style.display = "none";
+            document.getElementById("Downtime").style.display = "none";
+            document.getElementById("Equipment").style.display = "none";
+            document.getElementById("Factions").style.display = "none";
+            document.getElementById("Inventory").style.display = "none";
+            document.getElementById("Journal").style.display = "none";
+            document.getElementById("Quest").style.display = "none";
+            document.getElementById("Rest").style.display = "none";
+            document.getElementById("Shopping").style.display = "none";
+            document.getElementById("Skills").style.display = "none";
+            document.getElementById("Training").style.display = "block";
+            document.getElementById("Death").style.display = "none";
+            document.getElementById("Gameover").style.display = "none";
+            document.getElementById("Combat").style.display = "none";
+        }
+
+    </script>
+</body>
+</html>
